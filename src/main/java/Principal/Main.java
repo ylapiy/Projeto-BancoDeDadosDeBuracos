@@ -1,0 +1,42 @@
+package Principal;
+
+import java.util.Scanner;
+
+public class Main {
+
+	 public static void main(String[] args) {
+
+		 Scanner Entrada = new Scanner(System.in);
+		 
+		 System.out.println("Digite o caminho do banco de dados");
+		 String url = Entrada.next();
+		 
+		 System.out.println("Disite o usuario do banco de dados");
+		 String usuario = Entrada.next();
+		 
+		 System.out.println("Digite a senha do banco de dados");
+		 String senha = Entrada.next();
+		 
+		 System.out.println("Digite a API_KEY da geografia reversa");
+		 String KEY = Entrada.next();
+		 
+		 Principal.GeografiaReversa.ColocarKEY(KEY);
+		 BancoDeDados teste = new BancoDeDados(url,usuario,senha);
+		  
+		 teste.ConcetarPost();
+		  
+		 teste.printarTabela();
+		  
+		 
+		 /*
+		 
+		 Principal.GeografiaReversa.RuaeBairro(Principal.Metadados.PegarDadoGPSLatitude(caminho),Principal.Metadados.PegarDadosGPSLongitude(caminho));
+		 Principal.Metadados.PegarDadoData(caminho);
+		 Principal.Metadados.PegarDadosGPSLongitude(caminho);
+		 Principal.Metadados.PegarDadoGPSLatitude(caminho);
+
+         */
+		  
+}}
+	
+
