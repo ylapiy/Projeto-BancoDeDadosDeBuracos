@@ -1,1 +1,13 @@
+# Ignorar pastas de build do Maven
 /target/
+
+# Ignorar arquivos de credenciais sensíveis
+/src/main/java/Principal_resources/credentials.json
+/src/main/java/Principal_resources/secrets.json
+/tokens/StoredCredential
+
+# Ignorar arquivos do sistema e editores
+.DS_Store
+.vscode/
+.idea/
+*.log
