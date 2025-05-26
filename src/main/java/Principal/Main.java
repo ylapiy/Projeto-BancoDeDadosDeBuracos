@@ -1,5 +1,8 @@
 package Principal;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+
 public class Main {
 
 	 public static void main(String[] args) {
@@ -26,11 +29,11 @@ public class Main {
 		//  teste.printarTabela();
 		
 		  
-//		try {
-//		DriveUploader drive = new DriveUploader();
-//	drive.post("src/main/java/Principal_resources/20560981.jpeg", "image/jpeg", "20560981.jpeg");
-//	} catch (IOException | GeneralSecurityException e) {
-//	 e.printStackTrace();  		}
+		try {
+		DriveUploader drive = new DriveUploader();
+		drive.post("src/main/java/Principal_resources/20560981.jpeg", "image/jpeg", "20560981.jpeg");
+		} catch (IOException | GeneralSecurityException e) {
+		 	e.printStackTrace();  		}
 	 
 		 
 //		 try {

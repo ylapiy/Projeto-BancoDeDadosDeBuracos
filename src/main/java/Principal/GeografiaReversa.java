@@ -7,19 +7,17 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+
 import org.json.JSONObject;
 
 public class GeografiaReversa {
 
-	private static String API_KEY;
-	
-	public static void ColocarKEY(String API_KEY) {
-			
-			GeografiaReversa.API_KEY = API_KEY;
-			
-		}
+	private static final String API_KEY = "pk.7ac70b80805183e2466b163c071075dc";
+
+	private String Bairro;
+	private String Rua;
 		
-	public static void RuaeBairro(Double Latitude,Double Longitude) {
+	public static GeografiaReversa RuaeBairro(Double Latitude,Double Longitude) {
 			URL Url = null;
 			 try {
 			  String UrldaPagina = "https://us1.locationiq.com/v1/reverse.php?key=" + API_KEY + "&lat=" + Latitude + "&lon=" + Longitude + "&format=json";
@@ -36,18 +34,22 @@ public class GeografiaReversa {
 			  String rua = endereco.optString("road", "Rua não encontrada");
 			  String bairro = endereco.optString("suburb", "bairro não encontrada");
 			  
+			  GeografiaReversa saida = new GeografiaReversa();
+			  saida.Bairro = bairro;
+			  saida.Rua = rua;
 			  System.out.println("Rua: " + rua);
-	          System.out.println("Bairro: " + bairro);
-			  
+	       	  System.out.println("Bairro: " + bairro);
+			  return saida;
+				
 			 } 
-			  
-			 
-			 
+			
 			 catch (MalformedURLException e) {e.printStackTrace();} 
 			 catch (URISyntaxException e) {e.printStackTrace();} 
 			 catch (IOException e) {e.printStackTrace();}
-			
+			return null;
 		}
 	
+	public String GetRua(){return this.Rua;}
+	public String GetBairro(){return this.Bairro;}
 	
 }

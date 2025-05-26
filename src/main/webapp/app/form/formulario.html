@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Denúncia</title>
+    <link rel="stylesheet" href="formulario.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <img src="../../assets/logoPrefeitura.svg" alt="Logo da Prefeitura" class="imagemLogodaPrefeitura">
+            <span class="NomedaAplicação">| Denúncia de Buracos</span>
+        </div>
+        <div class="navbar-links">
+            <a href="../home/index.html"><span class="textoDaBarra">Inicio</span></a>
+            <a href="../serv/serv.html"><span class="textoDaBarra">Serviços</span></a>
+            <a href="../sobre/sobre.html"><span class="textoDaBarra">Saiba Mais</span></a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <form class="form-container" action="/Projeot-SQLdeBuracos-0.0.1-SNAPSHOT/upload" method="POST" enctype="multipart/form-data">
+            <h2>Formulário de Denúncia</h2>
+            
+            <div class="form-group">
+                <label for="location">Localização:</label>
+                <input type="text" id="location" name="location" placeholder="Digite o endereço do buraco" required>
+            </div>
+
+            <div class="form-group">
+                <label for="size">Tamanho do seu buraco:</label>
+                <select id="size" name="size" required>
+                    <option value="">Selecione o tamanho</option>
+                    <option value="small">Pequeno (até 30cm)</option>
+                    <option value="medium">Médio (30cm - 1m)</option>
+                    <option value="large">Grande (mais de 1m)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="risk">Nível de risco:</label>
+                <div class="radio-group">
+                    <input type="radio" id="low" name="risk" value="low" required>
+                    <label for="low">Baixo</label>
+                    
+                    <input type="radio" id="medium" name="risk" value="medium">
+                    <label for="medium">Médio</label>
+                    
+                    <input type="radio" id="high" name="risk" value="high">
+                    <label for="high">Alto</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Descrição adicional:</label>
+                <textarea id="description" name="description" rows="4" placeholder="Descreva detalhes adicionais sobre o seu buraco"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="photo">Foto do buraco:</label>
+                <input type="file" id="photo" name="photo" accept="image/*" required>
+                <div id="metadataStatus"></div>
+            </div>
+
+            <button type="submit" class="submit-btn">Enviar Buraco</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
+    <script>
+        document.getElementById('photo').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const arrayBuffer = e.target.result;
+                const dataView = new DataView(arrayBuffer);
+
+                EXIF.getData(file, function() {
+                    const allMetaData = EXIF.getAllTags(this);
+                    const hasMetaData = Object.keys(allMetaData).length > 0;
+
+                    document.getElementById('metadataStatus').textContent = 
+                        hasMetaData ? 'A imagem tem metadados.' : 'A imagem nao tem metadados.';
+                });
+            };
+            reader.readAsArrayBuffer(file);
+        });
+
+    </script>
+
+</body>
+</html>

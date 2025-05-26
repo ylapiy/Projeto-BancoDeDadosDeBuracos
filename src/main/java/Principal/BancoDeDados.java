@@ -1,30 +1,21 @@
 package Principal;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.DatabaseMetaData;
 import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class BancoDeDados {
 
-	private String url;
-    private String user;
-    private String password;
-   
-    public void ConcetarPost() {
+	private static final String url = "jdbc:postgresql://db.hvezapxfmgzmhppqllmi.supabase.co:5432/postgres?sslmode=require";
+    private static final String user = "postgres";
+    private static final String password = "10126824!euamopostgis"; // coloque a senha que está no seu supabase
 
-    try (Connection conn = DriverManager.getConnection(url, user, password)) {
-        System.out.println("Conectado com sucesso!");
-        DatabaseMetaData metadados = conn.getMetaData();
-        
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }}
 
     public void VerTabelas() {
     	
@@ -43,13 +34,13 @@ public class BancoDeDados {
             e.printStackTrace();
         }}
     
-    public void printarTabela() {
+    public static void printarTabela() {
     	
     	DateTimeFormatter dia =  DateTimeFormatter.ofPattern("dd-MM-yyyy");
     	
-    	try(Connection conn = DriverManager.getConnection(url,user,password);ResultSet resultado = conn.prepareStatement("SELECT id,data,categoria,status,observacao,imagem,ST_AsText(geom) AS geom ,rua,bairro FROM registro_popular;").executeQuery();){
+    	try(Connection conn = DriverManager.getConnection(url,user,password);ResultSet resultado = conn.prepareStatement("SELECT fid,data,categoria,status,observacao,imagem,ST_AsText(geom) AS geom ,rua,bairro FROM registro_popular;").executeQuery();){
     		while(resultado.next()){
-    			int     id         = resultado.getInt("id");
+    			int     fid         = resultado.getInt("fid");
                 Date    data       = resultado.getDate("data");
                 int     categoria  = resultado.getInt("categoria");
                 int     status     = resultado.getInt("status");
@@ -60,13 +51,13 @@ public class BancoDeDados {
                 String  bairro     = resultado.getString("bairro");
     		
     		 System.out.printf(
-    				 "ID: %d | Data: %s | Cat: %d | Status: %d%n" +
+    				 "FID: %d | Data: %s | Cat: %d | Status: %d%n" +
                      "Observação: %s%n" +
                      "Imagem: %s%n" +
                      "Geom: %s%n" +
                      "Rua: %s | Bairro: %s%n" +
                      "---------------------------------------%n",
-                     id,
+                     fid,
                      data.toLocalDate().format(dia),
                      categoria,
                      status,
@@ -87,11 +78,9 @@ public class BancoDeDados {
     	}
     	
     	
-    	
-    	
     }
     
-    public void InserirITEM(
+    public static void InserirITEM(
     		
     		java.sql.Date data,
             long categoria,
@@ -105,9 +94,17 @@ public class BancoDeDados {
  
     	
     	Random idAleatorio = new Random();
+
+        try {
+        Class.forName("org.postgresql.Driver");
+        System.out.println("Driver JDBC PostgreSQL carregado com sucesso.");
+    } catch (ClassNotFoundException e) {
+        System.err.println("Driver JDBC PostgreSQL NÃO encontrado!");
+        e.printStackTrace();
+    }
     
     	try(Connection conn = DriverManager.getConnection(url,user,password)){
-    		PreparedStatement NovaInserção = conn.prepareStatement("INSERT INTO registro_popular (id,data,categoria,status,observacao,imagem,geom,rua,bairro) VALUES (?,?,?,?,?,?,ST_SetSRID(ST_MakePoint(?, ?), 4326),?,?)");
+    		PreparedStatement NovaInserção = conn.prepareStatement("INSERT INTO registro_popular (fid,data,categoria,status,observacao,imagem,geom,rua,bairro) VALUES (?,?,?,?,?,?,ST_SetSRID(ST_MakePoint(?, ?), 4326),?,?)");
     		NovaInserção.setInt(1, idAleatorio.nextInt());
     		NovaInserção.setDate(2,data);
     		NovaInserção.setLong(3, categoria);
@@ -129,12 +126,10 @@ public class BancoDeDados {
     	
     }
 	
-    public BancoDeDados(String URL, String user, String Senha) {
-    	this.url = URL;
-    	this.user = user;
-    	this.password = Senha;
-    	
-    	
-    }
+//    public BancoDeDados(String URL, String user, String Senha) {
+//    	this.url = URL;
+//    	this.user = user;
+//    	this.password = Senha;  	
+//    }
 	
 }

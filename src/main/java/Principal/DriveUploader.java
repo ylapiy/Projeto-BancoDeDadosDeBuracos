@@ -24,27 +24,21 @@ import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 
-/* class to demonstrate use of Drive files list API */
 public class DriveUploader {
-  /**
-   * Application name.
-   */
+ 
   private static final String APPLICATION_NAME = "Banco de Buracos";
-  /**
-   * Global instance of the JSON factory.
-   */
+ 
   private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
-  /**
-   * Directory to store authorization tokens for this application.
-   */
+ 
   private static final String TOKENS_DIRECTORY_PATH = "tokens";
 
-  /**
-   * Global instance of the scopes required by this quickstart.
-   * If modifying these scopes, delete your previously saved tokens/ folder.
-   */
+ 
   private static final List<String> SCOPES = Collections.singletonList(DriveScopes.DRIVE_FILE);
-  private static final String CREDENTIALS_FILE_PATH = "/Principal_resources/secrets.json";
+  
+  private static final String CREDENTIALS_FILE_PATH = "src/main/resources/secrets.json";
+
+
+  public static String fileId;
 
   /**
    * Creates an authorized Credential object.
@@ -55,9 +49,9 @@ public class DriveUploader {
    */
   private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT)  throws IOException {
 		
-    InputStream in = DriveUploader.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
+    InputStream in = DriveUploader.class.getClassLoader().getResourceAsStream("secrets.json");
     if (in == null) {
-      throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
+      throw new FileNotFoundException("Resource not found: secrets.json (via classloader)");
     }
     GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 
@@ -81,32 +75,53 @@ public class DriveUploader {
    * @throws IOException              If an error occurs during the upload.
    * @throws GeneralSecurityException If an error occurs with security.
    */
-  public void post(String localFilePath, String mimeType, String driveFileName)  throws IOException, GeneralSecurityException {
-	
-    final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-    Drive service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
-        .setApplicationName(APPLICATION_NAME)
-        .build();
+//  public void post(String localFilePath, String mimeType, String driveFileName)  throws IOException, GeneralSecurityException {
+//	
+//    final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+//    Drive service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+//        .setApplicationName(APPLICATION_NAME)
+//        .build();
+//
+//    // Create file metadata
+//    File fileMetadata = new File();
+//    fileMetadata.setName(driveFileName);
+//    fileMetadata.setParents(Collections.singletonList("1CuJLqPsk0rc3poQyDlhyt5dtSSVDs6ys"));
+//
+//    // Specify the file path and MIME type
+//    
+//    java.io.File filePath = new java.io.File(localFilePath);
+//    FileContent mediaContent = new FileContent(mimeType, filePath);
+//
+//    // Upload
+//    File uploadedFile = service.files().create(fileMetadata, mediaContent)
+//        .setFields("id, name")
+//        .execute();
+//
+//    System.out.printf("Archive sent: %s (ID: %s)\n", uploadedFile.getName(), uploadedFile.getId());
+//  }
 
-    // Create file metadata
-    File fileMetadata = new File();
-    fileMetadata.setName(driveFileName);
-    fileMetadata.setParents(Collections.singletonList("1CuJLqPsk0rc3poQyDlhyt5dtSSVDs6ys"));
+  public static String post(String localFilePath, String mimeType, String driveFileName) throws IOException, GeneralSecurityException {
 
-    // Specify the file path and MIME type
-    
-    java.io.File filePath = new java.io.File(localFilePath);
-    FileContent mediaContent = new FileContent(mimeType, filePath);
+	    final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+	    Drive service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+	            .setApplicationName(APPLICATION_NAME)
+	            .build();
 
-    // Upload
-    File uploadedFile = service.files().create(fileMetadata, mediaContent)
-        .setFields("id, name")
-        .execute();
+	    File fileMetadata = new File();
+	    fileMetadata.setName(driveFileName);
+	    fileMetadata.setParents(Collections.singletonList("1CuJLqPsk0rc3poQyDlhyt5dtSSVDs6ys"));
 
-    System.out.printf("Archive sent: %s (ID: %s)\n", uploadedFile.getName(), uploadedFile.getId());
+	    java.io.File filePath = new java.io.File(localFilePath);
+	    FileContent mediaContent = new FileContent(mimeType, filePath);
+
+	    File uploadedFile = service.files().create(fileMetadata, mediaContent)
+	            .setFields("id, name")
+	            .execute();
+
+	    System.out.printf("Arquivo enviado: %s (ID: %s)\n", uploadedFile.getName(), uploadedFile.getId());
+	    return uploadedFile.getId();  
+  
   }
-
-
 //  public void get() throws IOException, GeneralSecurityException {
 //    // Build a new authorized API client service.
 //    final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
