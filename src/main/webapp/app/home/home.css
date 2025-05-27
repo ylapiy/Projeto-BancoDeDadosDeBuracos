@@ -148,6 +148,114 @@ top:0px;
   display: flex;
   flex-direction: column;
   font-size: 16px;
-  justify-content: ;
+  justify-content: center;
   color: #333;
+}
+
+.acessibilidade {
+    margin-right: 1rem;
+    font-size: 16px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    background-color: #DC9B33;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.acessibilidade label {
+    color: #222;
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.acessibilidade label:hover {
+    border-color: #DC9B33;
+    cursor: pointer;
+}
+
+.acessibilidade select {
+    padding: 6px 12px;
+    font-size: 1rem;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #222;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.acessibilidade select:focus {
+    border-color: #DC9B33;
+    box-shadow: 0 0 0 3px #DC9B33;
+    outline: none;
+}
+
+/* ===== Daltonismo: Protanopia ===== */
+body.protanopia .navbar {
+    background-color: #caa731;
+}
+body.protanopia .textoDaBarraSub,
+body.protanopia .acessibilidade {
+    background-color: #b8942a;
+}
+
+/* ===== Daltonismo: Deuteranopia ===== */
+body.deuteranopia .navbar {
+    background-color: #e0b634;
+}
+body.deuteranopia .textoDaBarraSub,
+body.deuteranopia .acessibilidade {
+    background-color: #c89e2c;
+}
+
+/* ===== Daltonismo: Tritanopia ===== */
+body.tritanopia .navbar {
+    background-color: #d4aa3c;
+}
+body.tritanopia .textoDaBarraSub,
+body.tritanopia .acessibilidade {
+    background-color: #ba9130;
+}
+
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footer {
+    background-color: #f1f1f1;
+    padding: 20px 10px;
+    margin-top: 40px;
+    border-top: 1px solid #ccc;
+    font-family: Arial, sans-serif;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-left {
+    color: #333;
+    font-size: 14px;
+}
+
+.footer-right a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #0066cc;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.footer-right a:hover {
+    color: #003366;
 }

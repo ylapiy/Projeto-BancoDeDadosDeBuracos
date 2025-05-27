@@ -59,7 +59,7 @@ public class Formulario extends HttpServlet {
 
         Foto.delete();
 
-       // response.getWriter().println("Denúncia enviada com sucesso!");
+        response.sendRedirect("app/home/index.html");
     }
 
     private Integer RetornoDeTamanho(String size) {
