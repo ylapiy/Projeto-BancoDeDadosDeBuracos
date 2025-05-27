@@ -18,7 +18,7 @@ import jakarta.servlet.http.Part;
 
 //clase chamada quando o formulario é enviado
 
-
+//é esse maldito webservel que faz ele epenas rodar em tomcat, senod assim exsitem 2 opçoes transformar em spingboot pq tem algo parecido la, ou conteinrizar o backend
 @WebServlet("/upload")
 @MultipartConfig
 public class Formulario extends HttpServlet {
