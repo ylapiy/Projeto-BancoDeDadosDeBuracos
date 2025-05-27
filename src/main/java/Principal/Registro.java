@@ -1,5 +1,7 @@
 package Principal;
 
+//json de base para o print da tabela, cada linha do banco de dados é transformado emm um json e printado pelo javascrip
+
 public class Registro {
     public int fid;
     public String data;

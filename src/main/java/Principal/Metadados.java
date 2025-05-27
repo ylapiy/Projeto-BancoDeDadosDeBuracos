@@ -9,12 +9,14 @@ import com.drew.metadata.Metadata;
 import com.drew.metadata.exif.ExifSubIFDDirectory;
 import com.drew.metadata.exif.GpsDirectory;
 
-
+//clase para limpar os metadados da foto
 
 public class Metadados {
 
 	public  static String PegarNomeDaIamgem(File Imagem) { 
-		
+
+		//retorn o nome da foto (bem autoexplicativo sinceramente)
+
 		try {  
 			
 			File imagemfile = Imagem;  
@@ -27,6 +29,10 @@ public class Metadados {
 
 	 public static double PegarDadoGPSLatitude(File Imagem) {
 		
+		//retorna os dados de latitude da foto, se tiver
+		//amtigamente o back bugava quando mandava uma foto sem metadados
+		//hoje parece que era antigamente
+
 		try {  
 			
 		File imagemfile = Imagem ;
@@ -50,6 +56,12 @@ public class Metadados {
 
 	 public static  double PegarDadosGPSLongitude(File Imagem) {
 			
+			
+		//retorna os dados de longitude da foto, se tiver
+		//amtigamente o back bugava quando mandava uma foto sem metadados
+		//hoje parece que era antigamente
+
+
 		try {  
 				
 		File imagemfile = Imagem; 
@@ -69,7 +81,8 @@ public class Metadados {
 		
 	 public static Date PegarDadoData(File Imagem){
 		 
-		 System.out.println("ja começo");
+		//esse aqui pega os dados de dia e horaio da foto 
+
 		 Date hoje = new java.sql.Date(System.currentTimeMillis());
 		 
 		 try {
@@ -81,8 +94,6 @@ public class Metadados {
 			 java.util.Date DatadaImagem = DiretorioDaImagem.getDateOriginal();
 			 java.sql.Date DatadaImagemSQL = new java.sql.Date(DatadaImagem.getTime());
 			 return DatadaImagemSQL;
-			 
-			 
 			 
 			 
 		 }catch(Exception e){e.getStackTrace();return hoje;}

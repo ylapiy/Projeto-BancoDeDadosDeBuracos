@@ -19,6 +19,8 @@ public class PrintaTabela extends HttpServlet{
     @Override
     protected void doGet (HttpServletRequest requisição, HttpServletResponse resposta) throws ServletException, IOException {
 
+        //função para printar a a tabela, depois de acessar a pagina form ele requisita essa função e criar o 
+        //tabela com as invformasçoes em nuvem
         resposta.setHeader("Access-Control-Allow-Origin", "*");
         resposta.setContentType("application/json");
 

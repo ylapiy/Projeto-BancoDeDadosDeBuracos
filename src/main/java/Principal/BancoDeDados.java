@@ -12,13 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+//feito usando JDBC
+
 public class BancoDeDados {
 
 	private static final String url = "jdbc:postgresql://db.hvezapxfmgzmhppqllmi.supabase.co:5432/postgres?sslmode=require";
     private static final String user = "postgres";
-    private static final String password = "10126824!euamopostgis"; // coloque a senha que está no seu supabase
+    private static final String password = "10126824!euamopostgis";
     
     public static List<Registro> printarTabela() {
+
+        //printar tabela retorna uma lisata de json 
 
         try {
         Class.forName("org.postgresql.Driver");
@@ -96,7 +100,6 @@ public class BancoDeDados {
     		NovaInserção.setString(10, bairro);
     	   
     		NovaInserção.executeUpdate();
-            System.out.println("Registro inserido com sucesso!");
     		
     	}catch(SQLException e){
     		e.printStackTrace();

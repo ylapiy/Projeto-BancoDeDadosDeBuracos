@@ -10,6 +10,8 @@ import java.net.URL;
 
 import org.json.JSONObject;
 
+//pega os dados de gps das fotos e usa eles para retorna o bairro e a rua de onde a foto esta localizada 
+
 public class GeografiaReversa {
 
 	private static final String API_KEY = "pk.7ac70b80805183e2466b163c071075dc";
