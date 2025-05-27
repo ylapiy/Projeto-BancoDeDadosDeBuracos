@@ -1,0 +1,22 @@
+# ============ MAVEN ============
+/target/
+
+# ============ CREDENCIAIS SENSÍVEIS ============
+/src/main/java/resources/credentials.json
+/src/main/java/resources/secrets.json
+/tokens/StoredCredential
+
+# ============ EDITORES / SISTEMA ============
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# VSCode
+.vscode/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

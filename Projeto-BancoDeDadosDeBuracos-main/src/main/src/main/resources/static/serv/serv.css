@@ -1,0 +1,317 @@
+
+body {
+  background-color: #EEEEEE;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.navbar {
+  width: 100%;
+  height: 4rem;
+  background: #fdb710;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  left: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  padding: 0 2rem;
+  box-sizing: border-box;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 3rem;
+}
+
+.imagemLogodaPrefeitura {
+  height: 3rem;
+  width: auto;
+}
+
+.textoDaBarra {
+  color: #333;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid transparent;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+.textoDaBarra:hover {
+  border-bottom-color: #333;
+  color: #000;
+}
+
+.NomedaAplicação {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: bold;
+  margin: 0;
+}
+
+.localdaImagem {
+  position: relative;
+  width: 80%;
+  max-width: 1200px;
+  margin: 8rem auto 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  min-height: 500px;
+}
+
+.divDaImagem {
+  width: 100%;
+  height: 100%;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #666;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.fluxo-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 60px 20px 80px;
+  background: #fff;
+  margin-top: 60px; 
+}
+
+
+.fluxo-card {
+  background-color: #fef3c7;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  max-width: 220px;
+  flex: 1 1 200px;
+}
+
+.fluxo-card i {
+  font-size: 36px;
+  color: #f59e0b;
+  margin-bottom: 10px;
+}
+
+.fluxo-card h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.fluxo-card p {
+  font-size: 14px;
+  color: #444;
+  margin-top: 8px;
+}
+
+.seta {
+  font-size: 24px;
+  color: #999;
+}
+
+.textoDaBarraSub {
+  color: #333;
+  padding-left: 0.5rem;
+  padding-top: 0.3rem;
+  padding-right:  0.5rem;
+  background-color: #DC9B33;
+  font-size: 1.2rem;
+  border-radius: 20px ;
+  font-weight: 500;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid transparent;
+  margin: 0;
+  transition: all 0.3s ease;
+  height: 100px;
+  width: 25px;
+}
+
+.acessibilidade {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  background-color: #DC9B33;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.acessibilidade label {
+  color: #222;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s ease, border-color 0.3s;
+}
+
+.acessibilidade label:hover {
+  border-color: #DC9B33;
+  cursor: pointer;
+}
+
+.acessibilidade select {
+  padding: 6px 12px;
+  font-size: 1rem;
+  border: 1px solid #fff;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #222;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.acessibilidade select:focus {
+  border-color: #DC9B33;
+  box-shadow: 0 0 0 3px rgba(220, 155, 51, 0.5);
+  outline: none;
+}
+
+/* ===== Daltonismo: Protanopia ===== */
+body.protanopia {
+  background-color: #F0F0F0;
+}
+
+body.protanopia .navbar {
+  background-color: #caa731;
+}
+
+body.protanopia .textoDaBarraSub,
+body.protanopia .acessibilidade {
+  background-color: #b8942a;
+}
+
+body.protanopia .divDaImagem {
+  background-color: #e6e6e6;
+}
+
+body.protanopia .ImagemDeExemplo {
+  background-color: #e6e6e6;
+}
+
+body.protanopia .NomedaAplicação,
+body.protanopia h3,
+body.protanopia .textoDaBarra,
+body.protanopia .textoDaBarraSub {
+  color: #222;
+}
+
+body.protanopia .acessibilidade label:hover {
+  border-color: #b8942a;
+}
+
+body.protanopia .acessibilidade select:focus {
+  border-color: #b8942a;
+  box-shadow: 0 0 0 3px rgba(184, 148, 42, 0.5);
+}
+
+/* ===== Daltonismo: Deuteranopia ===== */
+body.deuteranopia {
+  background-color: #F0F0F0;
+}
+
+body.deuteranopia .navbar {
+  background-color: #e0b634;
+}
+
+body.deuteranopia .textoDaBarraSub,
+body.deuteranopia .acessibilidade {
+  background-color: #c89e2c;
+}
+
+body.deuteranopia .divDaImagem {
+  background-color: #e6e6e6;
+}
+
+body.deuteranopia .ImagemDeExemplo {
+  background-color: #e6e6e6;
+}
+
+body.deuteranopia .NomedaAplicação,
+body.deuteranopia h3,
+body.deuteranopia .textoDaBarra,
+body.deuteranopia .textoDaBarraSub {
+  color: #222;
+}
+
+body.deuteranopia .acessibilidade label:hover {
+  border-color: #c89e2c;
+}
+
+body.deuteranopia .acessibilidade select:focus {
+  border-color: #c89e2c;
+  box-shadow: 0 0 0 3px rgba(200, 158, 44, 0.5);
+}
+
+/* ===== Daltonismo: Tritanopia ===== */
+body.tritanopia {
+  background-color: #F0F0F0;
+}
+
+body.tritanopia .navbar {
+  background-color: #d4aa3c;
+}
+
+body.tritanopia .textoDaBarraSub,
+body.tritanopia .acessibilidade {
+  background-color: #ba9130;
+}
+
+body.tritanopia .divDaImagem {
+  background-color: #e6e6e6;
+}
+
+body.tritanopia .ImagemDeExemplo {
+  background-color: #e6e6e6;
+}
+
+body.tritanopia .NomedaAplicação,
+body.tritanopia h3,
+body.tritanopia .textoDaBarra,
+body.tritanopia .textoDaBarraSub {
+  color: #222;
+}
+
+body.tritanopia .acessibilidade label:hover {
+  border-color: #ba9130;
+}
+
+body.tritanopia .acessibilidade select:focus {
+  border-color: #ba9130;
+  box-shadow: 0 0 0 3px rgba(186, 145, 48, 0.5);
+}
+
+/* Ensure proper animation for all transitions */
+* {
+  transition-property: background-color, color, border-color, box-shadow, transform;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
