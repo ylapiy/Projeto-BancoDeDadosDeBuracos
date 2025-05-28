@@ -24,21 +24,21 @@ import jakarta.servlet.http.Part;
 public class Formulario extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest requisicao, HttpServletResponse resposta)
             throws IOException, jakarta.servlet.ServletException {
 
         String uploadPath = System.getProperty("java.io.tmpdir");
 
         //armazenado as variavies do form que vãos ser usadad no banco de dados
 
-        String localizacao = request.getParameter("location");
-        String tamanho = request.getParameter("size");
-        String risco = request.getParameter("risk");
-        String observacao = request.getParameter("description");
+        String localizacao = requisicao.getParameter("location");
+        String tamanho = requisicao.getParameter("size");
+        String risco = requisicao.getParameter("risk");
+        String observacao = requisicao.getParameter("description");
 
         //tratando a foto para poder usa-lo nas fuçoes
 
-        Part filePart = request.getPart("photo");
+        Part filePart = requisicao.getPart("photo");
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         File Foto = new File(uploadPath + File.separator + fileName);
 
@@ -73,7 +73,7 @@ public class Formulario extends HttpServlet {
 
         Foto.delete();
 
-        response.sendRedirect("app/home/index.html");
+        resposta.sendRedirect("app/home/index.html");
     }
 
     private Integer RetornoDeTamanho(String size) {
