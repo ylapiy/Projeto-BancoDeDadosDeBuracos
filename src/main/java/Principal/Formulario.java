@@ -42,6 +42,8 @@ public class Formulario extends HttpServlet {
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         File Foto = new File(uploadPath + File.separator + fileName);
 
+
+	//dava erro 500 cajo a foto seja repitida então isso se tornou necessario
         //tratamento feito caso a foto seja repitida
         try (InputStream input = filePart.getInputStream()) {
         Files.copy(input, Foto.toPath(), StandardCopyOption.REPLACE_EXISTING);
