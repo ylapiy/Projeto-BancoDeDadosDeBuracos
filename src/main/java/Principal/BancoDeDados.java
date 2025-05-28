@@ -23,12 +23,13 @@ public class BancoDeDados {
     public static List<Registro> printarTabela() {
 
         //printar tabela retorna uma lisata de json 
-
+	//try cath pra meio que forçar a conceção com o drive, quando eu tstei sem sempre dava erro, também esta presente na insraçõ de itens da tabela
+	//ainda da erro de vez em quando, mas no geral é da erro de vez em nunca contra sempre da erro eu levo minhas chances ne
         try {
         Class.forName("org.postgresql.Driver");
-        System.out.println("Driver JDBC PostgreSQL carregado com sucesso.");
+        System.out.println("drive carregado");
         } catch (ClassNotFoundException e) {
-        System.err.println("Driver JDBC PostgreSQL NÃO encontrado!");
+        System.err.println("drive não carregado");
         e.printStackTrace();
         }
 
@@ -80,9 +81,9 @@ public class BancoDeDados {
 
         try {
         Class.forName("org.postgresql.Driver");
-        System.out.println("Driver JDBC PostgreSQL carregado com sucesso.");
+        System.out.println("drive carregado");
     } catch (ClassNotFoundException e) {
-        System.err.println("Driver JDBC PostgreSQL NÃO encontrado!");
+        System.err.println("drive não carregado");
         e.printStackTrace();
     }
     
